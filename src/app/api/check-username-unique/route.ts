@@ -25,7 +25,7 @@ export async function GET(request: Request) {
 
             const usernameErrors = result.error.format().username?._errors || []
 
-            return Response.json({ success: false, message: "Invalid username", errors: usernameErrors }, { status: 400 });
+            return Response.json({ success: false, message: usernameErrors?.length > 0 ? usernameErrors[0] : "Invalid username" }, { status: 400 });
         }
 
         const { username } = result.data;
