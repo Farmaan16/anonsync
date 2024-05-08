@@ -1,5 +1,6 @@
 'use client'
 
+import { MessageCard } from "@/components/MessageCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -128,7 +129,7 @@ const Dashboard = () => {
         }
     }
 
-    const { username } = session?.user as User
+   const username = (session?.user as User)?.username || "";
 
     
     const baseUrl = `${window.location.protocol}//${window.location.host}/` 
