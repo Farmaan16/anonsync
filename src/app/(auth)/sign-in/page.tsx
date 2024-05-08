@@ -58,11 +58,14 @@ const SignInForm = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join AnonSync
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-stone-800">
+            AnonSync
           </h1>
 
-          <p className="text-gray-600 mb-4"> Sign In to get started</p>
+          <p className="text-gray-600 mb-4 font-semibold">
+            {" "}
+            Sign In to get synced anonymously
+          </p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -74,7 +77,7 @@ const SignInForm = () => {
                 <FormItem>
                   <FormLabel>Email/Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Email/Username"  {...field} />
+                    <Input placeholder="Email/Username" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -96,7 +99,12 @@ const SignInForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-zinc-900 text-zinc-300 rounded-3xl   "
+              variant={"outline"}
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait
@@ -108,9 +116,12 @@ const SignInForm = () => {
           </form>
         </Form>
         <div className="text-center m-4">
-          <p>
+          <p className="font-semibold">
             Don&apos;t have an account?
-            <Link href="/sign-up" className="text-blue-500 ml-2">
+            <Link
+              href="/sign-up"
+              className="text-blue-600 ml-2 hover:underline"
+            >
               Sign Up
             </Link>
           </p>

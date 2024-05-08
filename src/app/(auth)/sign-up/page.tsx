@@ -101,11 +101,14 @@ const SignUpForm = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-stone-800">
             Join AnonSync
           </h1>
 
-          <p className="text-gray-600 mb-4"> Sign up to get started</p>
+          <p className="text-gray-600 mb-4 font-semibold">
+            {" "}
+            Sign up to get started
+          </p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -170,7 +173,12 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-zinc-900 text-zinc-300 rounded-3xl  "
+              variant={"outline"}
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait
@@ -182,9 +190,12 @@ const SignUpForm = () => {
           </form>
         </Form>
         <div className="text-center m-4">
-          <p>
+          <p className="font-semibold">
             Already have an account?
-            <Link href="/sign-in" className="text-blue-500 ml-2">
+            <Link
+              href="/sign-in"
+              className="text-blue-600 ml-2 hover:underline"
+            >
               Sign In
             </Link>
           </p>

@@ -16,11 +16,11 @@ const Home = () => {
     <>
       <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12">
         <section className="text-center mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-6xl font-extrabold ">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-stone-700 ">
             Say it all, without saying who you are.
           </h1>
 
-          <p className="text-lg md:text-2xl mt-4">
+          <p className="text-lg md:text-2xl mt-4 text-zinc-600">
             Dive into AnonSync - Where Mystery Meets Messaging! Your identity
             stays incognito while your conversations ignite!
           </p>
@@ -38,7 +38,7 @@ const Home = () => {
                     <CardHeader className="font-bold text-cyan-600">{message.title}</CardHeader>
                     <CardContent className="flex aspect-auto items-center justify-center p-6">
                       <div>
-                        <span className="text-xl font-semibold">
+                        <span className="text-xl font-semibold text-slate-800">
                           {message.content}
                         </span>
 
