@@ -17,21 +17,23 @@ function Navbar() {
     <nav className="p-4 md:p-4   text-zinc-800">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <a
-          href="#"
+          href="/"
           className="text-5xl font-extrabold mb-4 md:mb-0 text-zinc-900"
         >
           AnonSync
         </a>
         {session ? (
           <>
-            <span className="mr-4">Welcome, {user.username || user.email}</span>
-            <Button
-              onClick={() => signOut()}
-              className="w-full  md:m-6  bg-zinc-900 text-zinc-300 md:text-lg rounded-3xl mx-4"
-              variant="outline"
-            >
-              Logout
-            </Button>
+            <span className="font-semibold text-center md:mr-8">Welcome, {user.username || user.email}</span>
+            <div className="flex justify-center ">
+              <Button
+                onClick={() => signOut()}
+                className="w-full  md:m-6  bg-zinc-900 text-zinc-300 md:text-lg rounded-3xl mx-4"
+                variant="outline"
+              >
+                Logout
+              </Button>
+            </div>
           </>
         ) : (
           <div className="flex justify-center mr-4">

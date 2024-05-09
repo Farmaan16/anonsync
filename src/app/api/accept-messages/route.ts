@@ -33,7 +33,7 @@ export async function POST(request: Request) {
         if (!updatedUser) {
             return Response.json({ success: false, message: "Failed to update user status to accepting messages" }, { status: 401 })
         } else {
-            return Response.json({ success: true, message: "User status updated successfully" }, { status: 200 })
+            return Response.json({ success: true, message: "Accept messages status updated" }, { status: 200 })
         }
         
     } catch (error) {

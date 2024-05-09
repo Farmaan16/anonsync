@@ -117,7 +117,7 @@ const SignUpForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">Username</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="username"
@@ -150,7 +150,7 @@ const SignUpForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">Email</FormLabel>
                   <FormControl>
                     <Input placeholder="Email" {...field} />
                   </FormControl>
@@ -164,7 +164,7 @@ const SignUpForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="Password" {...field} />
                   </FormControl>

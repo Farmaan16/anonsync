@@ -75,7 +75,7 @@ const SignInForm = () => {
               rules={{ required: "Email/Username is required" }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email/Username</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">Email/Username</FormLabel>
                   <FormControl>
                     <Input placeholder="Email/Username" {...field} />
                   </FormControl>
@@ -90,7 +90,7 @@ const SignInForm = () => {
               rules={{ required: "Password is required" }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="Password" {...field} />
                   </FormControl>
