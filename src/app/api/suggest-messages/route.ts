@@ -4,7 +4,7 @@ import { GoogleGenerativeAIStream, StreamingTextResponse } from "ai";
 //create an Gemini client (thats edge friendly)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
-console.log(process.env.GEMINI_API_KEY);
+// console.log(process.env.GEMINI_API_KEY);
 
 //set the runtime to edge for faster responses
 export const runtime = "edge";

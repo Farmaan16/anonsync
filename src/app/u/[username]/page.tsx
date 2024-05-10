@@ -46,14 +46,14 @@ export default function UserPage() {
   const username = params.username
   
   
-  const { completion, setCompletion, isLoading: isSuggestLoading, error } = useCompletion({
+  const { completion, complete, isLoading: isSuggestLoading, error } = useCompletion({
     api: '/api/suggest-messages',
     initialCompletion: initialMessageString
   })
   
-  console.log(completion)
+  // console.log(completion)
 
-  console.log(parseStringMessages(completion))
+  // console.log(parseStringMessages(completion))
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema)
@@ -93,15 +93,7 @@ export default function UserPage() {
 
   const fetchSuggestedMessages = async () => {
     try {
-      const response = await axios.post<ApiResponse>('/api/suggest-messages')
-      console.log(response.data)
-      
-      const messages = response.data
-
-
-      return messages
-
-      
+      complete('')
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>
