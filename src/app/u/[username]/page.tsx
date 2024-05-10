@@ -38,7 +38,6 @@ const initialMessageString = "What's your favorite show?|| Do you have any pets?
 export default function UserPage() {
   
   const [isLoading, setIsLoading] = useState(false)
-  // const[sugggestedMessages, setSuggestedMessages] = useState<string[]>(parseStringMessages(initialMessageString))
   
 
 
@@ -106,19 +105,23 @@ export default function UserPage() {
   }
 
   return (
-
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
+    <div className="container mx-auto my-8 p-4 lg:p-6 bg-white rounded max-w-4xl">
+      <h1 className="text-3xl lg:text-4xl font-extrabold mb-4 lg:mb-6 text-center text-stone-700">
         Public Profile Link
       </h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4 lg:space-y-6"
+        >
           <FormField
             control={form.control}
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel className="text-zinc-900 font-semibold">
+                  Send Anonymous Message to @{username}
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
@@ -132,12 +135,19 @@ export default function UserPage() {
           />
           <div className="flex justify-center">
             {isLoading ? (
-              <Button disabled>
+              <Button
+                disabled
+                className="bg-zinc-800 text-zinc-300 rounded-3xl hover:bg-zinc-900 w-[] lg:w-auto"
+              >
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
+              <Button
+                type="submit"
+                disabled={isLoading || !messageContent}
+                className="bg-zinc-800 text-zinc-300 rounded-3xl hover:bg-zinc-900 w-[100px] lg:w-auto"
+              >
                 Send It
               </Button>
             )}
@@ -145,20 +155,26 @@ export default function UserPage() {
         </form>
       </Form>
 
-      <div className="space-y-4 my-8">
+      <div className="space-y-4 my-6 lg:my-8">
         <div className="space-y-2">
-          <Button
-            onClick={fetchSuggestedMessages}
-            className="my-4"
-            disabled={isSuggestLoading}
-          >
-            Suggest Messages
-          </Button>
-          <p>Click on any message below to select it.</p>
+          <div className="flex flex-col items-center  lg:justify-start">
+            <Button
+              onClick={fetchSuggestedMessages}
+              className="my-2 lg:my-4 bg-neutral-800 text-stone-100 rounded-3xl hover:bg-zinc-950 lg:mr-2 lg:w-auto"
+              disabled={isSuggestLoading}
+            >
+              Suggest Messages
+            </Button>
+
+            <p className="text-gray-600 font-semibold text-center lg:text-left lg:mt-2">
+              Click on any message below to select it.
+            </p>
+          </div>
         </div>
+
         <Card>
           <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Messages</h3>
           </CardHeader>
           <CardContent className="flex flex-col space-y-4">
             {error ? (
@@ -168,7 +184,7 @@ export default function UserPage() {
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
+                  className="mb-2 w-full lg:w-auto whitespace-normal"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -180,14 +196,18 @@ export default function UserPage() {
       </div>
       <Separator className="my-6" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
-        <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+        <div className="mb-2 lg:mb-4 font-semibold text">
+          Get Your Message Board
+        </div>
+        <Link href={"/sign-up"}>
+          <Button className="bg-blue-900 text-zinc-200 font-bold rounded-3xl hover:bg-blue-700 lg:w-auto">
+            Create Your Account
+          </Button>
         </Link>
       </div>
     </div>
   );
-  
+
 
 }
 

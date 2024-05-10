@@ -33,7 +33,7 @@ const VerifyAccount = () => {
         title: "success",
         description: response.data.message,
       });
-      router.replace("sign-in");
+      router.push("/api/sign-in");
     } catch (error) {
       console.log(error, "Error signing up");
       const axiosError = error as AxiosError<ApiResponse>;
