@@ -70,9 +70,10 @@ function UserDashboard() {
           });
         }
       } catch (error) {
+       
         const axiosError = error as AxiosError<ApiResponse>;
         toast({
-          title: "Error",
+          title: "get message Error",
           description:
             axiosError.response?.data.message ?? "Failed to fetch messages",
           variant: "destructive",

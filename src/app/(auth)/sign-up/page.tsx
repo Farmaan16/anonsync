@@ -173,20 +173,22 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-zinc-900 text-zinc-300 rounded-3xl  "
-              variant={"outline"}
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait
-                </>
-              ) : (
-                "Sign Up"
-              )}
-            </Button>
+            <div className="flex justify-center">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-zinc-900 text-zinc-300 rounded-3xl  "
+                variant={"outline"}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait
+                  </>
+                ) : (
+                  "Sign Up"
+                )}
+              </Button>
+            </div>
           </form>
         </Form>
         <div className="text-center m-4">

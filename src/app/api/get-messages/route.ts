@@ -15,58 +15,46 @@ import mongoose from "mongoose";
  * It will return a json object with a success flag and the list of messages
  */
 export async function GET(request: Request) {
-    await dbConnect("AnonSync"); // Connect to database
+  await dbConnect('AnonSync');
+  const session = await getServerSession(authOptions);
 
-
-    const session = await getServerSession(authOptions); // Get NextAuth session
-    const user: User = session?.user as User; // Get user from session
-
-    if (!session || !session.user) { // If user is not authenticated
-        return Response.json( // Return unauthorized error
-            { success: false, message: "Unauthorized" },
-            { status: 401 }
-        );
-    }
-
-    const userId = new mongoose.Types.ObjectId(user._id); // Get the user id from the session
     
-    try {
-        const user = await UserModel.aggregate([ // Use Mongoose aggregate to get the messages
-            {
-                $match: { // Filter by user id
-                    id: userId
-                }
-            },
-            {
-                $unwind: "$messages" // Unwind the messages array
-            },
-            {
-                $sort: { // Sort by creation date
-                    "messages.createdAt": -1
-                }
-            },
-            {
-                $group: { // Group by user id and push messages to an array
-                    _id: "$_id",
-                    messages: {
-                        $push: "$messages"
-                    }
-                }                
-            }
-            
-        ]);        
+   const _user: User = session!.user as User;
 
-        if (!user || user.length === 0) { // If no user was found
-            return Response.json({ success: false, message: "User not found" }, { status: 404 }) // Return not found error
-        }
+  
+  if (!session || !_user) {
+    return Response.json(
+      { success: false, message: "Not authenticated" },
+      { status: 401 }
+    );
+  }
+  const userId = new mongoose.Types.ObjectId(_user._id);
+  try {
+    const user = await UserModel.aggregate([
+      { $match: { _id: userId } },
+      { $unwind: "$messages" },
+      { $sort: { "messages.createdAt": -1 } },
+      { $group: { _id: "$_id", messages: { $push: "$messages" } } },
+    ]).exec();
 
-        return Response.json({ success: true, messages: user[0].messages }, { status: 200 }) // Return success with the list of messages
-        
-
-    } catch (error) {
-        console.log("failed to find messages", error) // Log error
-
-        return Response.json({ success: false, message: "Failed to find messages" }, { status: 500 })
+    if (!user || user.length === 0) {
+      return Response.json(
+        { message: "User not found", success: false },
+        { status: 404 }
+      );
     }
-}  
 
+    return Response.json(
+      { messages: user[0].messages },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    console.error("An unexpected error occurred:", error);
+    return Response.json(
+      { message: "Internal server error", success: false },
+      { status: 500 }
+    );
+  }
+}
