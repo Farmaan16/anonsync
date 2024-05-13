@@ -33,14 +33,14 @@ const VerifyAccount = () => {
         title: "success",
         description: response.data.message,
       });
-      router.push("/api/sign-in");
+      router.push("/sign-in");
     } catch (error) {
       console.log(error, "Error signing up");
       const axiosError = error as AxiosError<ApiResponse>;
       let errorMessage = axiosError.response?.data.message;
 
       toast({
-        title: "Sign Up Failed",
+        title: "Verification Failed",
         description: errorMessage,
         variant: "destructive",
       });

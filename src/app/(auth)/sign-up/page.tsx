@@ -101,9 +101,11 @@ const SignUpForm = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full  max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-stone-800">
-            Join AnonSync
-          </h1>
+          <Link href="/">
+            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-stone-800">
+              Join AnonSync
+            </h1>
+          </Link>
 
           <p className="text-gray-600 mb-4 font-semibold">
             {" "}

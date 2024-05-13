@@ -8,9 +8,8 @@ import { User } from "next-auth";
 import { Button } from "../components/ui/button";
 
 function Navbar() {
-    const { data: session } = useSession();
-    
-  
+  const { data: session } = useSession();
+
   const user = session?.user as User;
 
   return (
@@ -18,13 +17,15 @@ function Navbar() {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <a
           href="/"
-          className="text-5xl font-extrabold mb-4 md:mb-0 text-zinc-900"
+          className="text-5xl font-extrabold mb-4 md:mb-0 text-zinc-800"
         >
           AnonSync
         </a>
         {session ? (
           <>
-            <span className="font-semibold text-center md:mr-8">Welcome, {user.username || user.email}</span>
+            <span className="font-semibold text-center md:mr-8">
+              Welcome, {user.username || user.email}
+            </span>
             <div className="flex justify-center ">
               <Button
                 onClick={() => signOut()}
