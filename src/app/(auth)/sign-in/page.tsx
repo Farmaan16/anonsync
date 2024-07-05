@@ -26,7 +26,7 @@ const SignInForm = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  //zod implementation
+  // Zod implementation
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -34,6 +34,10 @@ const SignInForm = () => {
       password: "",
     },
   });
+
+  // Watch form fields
+  const identifier = form.watch("identifier");
+  const password = form.watch("password");
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     setIsSubmitting(true);
@@ -48,9 +52,11 @@ const SignInForm = () => {
         description: "Incorrect email or password",
         variant: "destructive",
       });
-    }
-    if (result?.url) {
+      setIsSubmitting(false);
+    } else if (result?.url) {
       router.replace("/dashboard");
+    } else {
+      setIsSubmitting(false);
     }
   };
 
@@ -63,9 +69,7 @@ const SignInForm = () => {
               AnonSync
             </h1>
           </Link>
-
           <p className="text-gray-600 mb-4 font-semibold">
-            {" "}
             Sign In to get synced anonymously
           </p>
         </div>
@@ -74,14 +78,14 @@ const SignInForm = () => {
             <FormField
               name="identifier"
               control={form.control}
-              rules={{ required: "Email/Username is required" }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-zinc-900 font-semibold">Email/Username</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">
+                    Email/Username
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Email/Username" {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -89,14 +93,14 @@ const SignInForm = () => {
             <FormField
               name="password"
               control={form.control}
-              rules={{ required: "Password is required" }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-zinc-900 font-semibold">Password</FormLabel>
+                  <FormLabel className="text-zinc-900 font-semibold">
+                    Password
+                  </FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="Password" {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -104,13 +108,14 @@ const SignInForm = () => {
             <div className="flex justify-center">
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="bg-zinc-900 text-zinc-300 rounded-3xl   "
+                disabled={isSubmitting || !identifier || !password}
+                className="bg-zinc-900 text-zinc-300 rounded-3xl"
                 variant={"outline"}
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please Wait
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
+                    Wait
                   </>
                 ) : (
                   "Sign In"
