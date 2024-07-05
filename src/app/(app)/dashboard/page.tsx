@@ -140,7 +140,7 @@ function UserDashboard() {
       <h1 className="text-4xl font-bold mb-4 text-zinc-700">User Dashboard</h1>
 
       <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2 text-gray-700">Copy Your Unique Link</h2>{" "}
+        <h2 className="text-lg font-semibold mb-2 text-gray-700">Copy Your Unique Link And Share It With Your Friends to Get Started</h2>
         <div className="flex flex-col md:flex-row justify-start items-center ">
           <Input
             type="text"

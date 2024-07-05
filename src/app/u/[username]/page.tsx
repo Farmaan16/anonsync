@@ -160,10 +160,10 @@ export default function UserPage() {
           <div className="flex flex-col items-center  lg:justify-start">
             <Button
               onClick={fetchSuggestedMessages}
-              className="my-2 lg:my-4 bg-neutral-800 text-stone-100 rounded-3xl hover:bg-zinc-950 lg:mr-2 lg:w-auto"
+              className="my-2 lg:my-4 rounded-3xl  lg:mr-2 lg:w-auto text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2"
               disabled={isSuggestLoading}
             >
-              Suggest Messages
+              Get Suggestions From AI 🤖
             </Button>
 
             <p className="text-gray-600 font-semibold text-center lg:text-left lg:mt-2">
